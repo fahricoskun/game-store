@@ -45,14 +45,16 @@ function Main() {
 
   const handleSectionActive = (target) => {
     sections.map((section) => {
-      section.ref.current.classList.remove("active");
-      if (section.ref.current.id === target) {
-        section.ref.current.classList.add("active");
+      if (section.ref.current) {  // ref.current'e erişmeden önce var olup olmadığını kontrol edin
+        section.ref.current.classList.remove("active");
+        if (section.ref.current.id === target) {
+          section.ref.current.classList.add("active");
+        }
       }
       return section;
     });
   };
-
+  
   const fetchData = () => {
     fetch("http://localhost:3000/api/gamesData.json")
       .then((res) => res.json())
